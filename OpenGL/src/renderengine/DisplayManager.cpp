@@ -2,7 +2,7 @@
 #include <iostream>
 #include <stdio.h>
 
-namespace display {
+namespace Display {
 
 	GLFWwindow *window;
 
@@ -17,9 +17,11 @@ namespace display {
 	void windowRefeshCallback(GLFWwindow *window) {
 		glfwGetFramebufferSize(window, &displayWidth, &displayHeight);
 		glViewport(0, 0, displayWidth, displayHeight);
-		//printf("callback %d %d\n", displayWidth, displayHeight);
 	}
 
+	float getAspectRatio() {
+		return (float) displayWidth / (float) displayHeight;
+	}
 	
 	void createDisplay() {
 		glfwInit();
@@ -31,7 +33,7 @@ namespace display {
 
 		glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 
-		window = glfwCreateWindow(INITIAL_WIDTH, INITIAL_HEIGHT, "GL++", nullptr, nullptr);
+		window = glfwCreateWindow(INITIAL_WIDTH, INITIAL_HEIGHT, "CTrek Engine", nullptr, nullptr);
 		if (window == nullptr) {
 			std::cerr << "Failed to create GLFW window\n";
 			glfwTerminate();

@@ -12,11 +12,13 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-namespace display {
+namespace Display {
 
 	void createDisplay();
 	void updateDisplay();
 	void closeDisplay();
+
+	float getAspectRatio();
 
 	GLFWwindow *getWindow();
 

@@ -76,11 +76,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/External Resources/GLEW/include;$(SolutionDir)/External Resources/GLFW/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/External Resources/GLEW/include;$(SolutionDir)/External Resources/GLFW/include;$(SolutionDir)/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)/External Resources/GLEW/lib/Release/Win32;$(SolutionDir)/External Resources/GLFW/lib-vc2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -99,13 +100,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/External Resources/GLEW/include;$(SolutionDir)/External Resources/GLFW/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/External Resources/GLEW/include;$(SolutionDir)/External Resources/GLFW/include;$(SolutionDir)/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)/External Resources/GLEW/lib/Release/Win32;$(SolutionDir)/External Resources/GLFW/lib-vc2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -123,21 +125,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\entities\Entity.cpp" />
     <ClCompile Include="src\entities\shaders\EntityShader.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\renderengine\Camera.cpp" />
     <ClCompile Include="src\renderengine\DisplayManager.cpp" />
     <ClCompile Include="src\renderengine\Loader.cpp" />
+    <ClCompile Include="src\renderengine\obj\objparser.cpp" />
     <ClCompile Include="src\renderengine\Renderer.cpp" />
     <ClCompile Include="src\renderengine\shaders\ShaderProgram.cpp" />
+    <ClCompile Include="src\utils\keyboard.cpp" />
+    <ClCompile Include="src\utils\sfmath.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\entities\Entity.h" />
     <ClInclude Include="src\entities\shaders\EntityShader.h" />
+    <ClInclude Include="src\renderengine\Camera.h" />
     <ClInclude Include="src\renderengine\DisplayManager.h" />
+    <ClInclude Include="src\renderengine\Light.h" />
     <ClInclude Include="src\renderengine\Loader.h" />
     <ClInclude Include="src\renderengine\models.h" />
+    <ClInclude Include="src\renderengine\obj\objparser.h" />
     <ClInclude Include="src\renderengine\Renderer.h" />
     <ClInclude Include="src\renderengine\shaders\ShaderProgram.h" />
+    <ClInclude Include="src\utils\keyboard.h" />
     <ClInclude Include="src\utils\mytypes.h" />
+    <ClInclude Include="src\utils\sfmath.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\entities\shaders\fragmentShader.glsl" />

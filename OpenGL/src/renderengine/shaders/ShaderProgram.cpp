@@ -33,15 +33,17 @@ uint ShaderProgram::loadShader(const char* file, GLenum type) {
 
 	int status;
 	glGetShaderiv(shaderid, GL_COMPILE_STATUS, &status);
-	if (status == GL_FALSE) {
+	if (!status /*status == GL_FALSE*/) {
 		int infoLogLen;
 		glGetShaderiv(shaderid, GL_INFO_LOG_LENGTH, &infoLogLen);
 		char *log = new char[infoLogLen];
 		glGetShaderInfoLog(shaderid, infoLogLen, NULL, log);
 		fprintf(stderr, "error compiling shader %s:\n", file);
 		fprintf(stderr, "\n%s\n", log);
-		exit(1);
+		//puts("press any key to continue... :)");
+		//getchar();
 		delete[] log;
+		exit(1);
 	}
 
 	return shaderid;
@@ -51,14 +53,18 @@ void ShaderProgram::bindAttrib(int attrib, const char *varName) {
 	glBindAttribLocation(m_programID, attrib, varName);
 }
 
+void ShaderProgram::manualLink() {
+	glLinkProgram(m_programID);
+	glValidateProgram(m_programID);
+}
+
 ShaderProgram::ShaderProgram(const char *vertexFile, const char *fragmentFile) {
 	m_vertexID = loadShader(vertexFile, GL_VERTEX_SHADER);
 	m_fragmentID = loadShader(fragmentFile, GL_FRAGMENT_SHADER);
 	m_programID = glCreateProgram();
 	glAttachShader(m_programID, m_vertexID);
 	glAttachShader(m_programID, m_fragmentID);
-	glLinkProgram(m_programID);
-	glValidateProgram(m_programID);
+	// incomplete, bind attributes, get uniform locations, and link program in sub-class constructor
 }
 
 ShaderProgram::~ShaderProgram() {
